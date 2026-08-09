@@ -8,7 +8,7 @@ source.include_exts = py,png,jpg,kv,atlas,onnx,txt
 
 version = 0.1
 
-requirements = python3,kivy==2.3.0,opencv-python,numpy,plyer,android
+requirements = python3,kivy==2.3.0,opencv-python,numpy==1.23.2,plyer,android
 orientation = portrait
 fullscreen = 0
 
