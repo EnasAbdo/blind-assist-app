@@ -1,0 +1,9 @@
+kivy==2.3.0
+opencv-python
+numpy
+plyer
+pyttsx3
+
+# للتطوير/التصدير على الكمبيوتر فقط (مش بتنحط بـ buildozer.spec):
+# ultralytics
+# tensorflow
