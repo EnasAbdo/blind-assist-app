@@ -7,8 +7,8 @@ source.include_exts = py,png,jpg,kv,atlas,onnx,txt
 version = 0.1
 
 # 1. تم تعديل opencv-python إلى opencv ليعمل التجميع مع أندرويد بشكل صحيح
-requirements = python3==3.11.9,hostpython3==3.11.9,kivy==2.3.0,opencv,numpy,plyer,android
 
+requirements = python3==3.11.9,hostpython3==3.11.9,kivy==2.3.0,opencv-python,numpy,plyer,android
 orientation = portrait
 fullscreen = 0
 
