@@ -5,7 +5,7 @@ package.domain = org.example
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,onnx,txt
 version = 0.1
-requirements = python3==3.11.9,hostpython3==3.11.9,kivy==2.3.0,opencv,numpy,plyer,android
+requirements = python3==3.11.9,hostpython3==3.11.9,kivy==2.3.0,numpy,plyer,android
 orientation = portrait
 fullscreen = 0
 android.permissions = CAMERA,RECORD_AUDIO
