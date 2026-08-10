@@ -16,6 +16,6 @@ android.ndk_api = 24
 android.archs = arm64-v8a
 
 [buildozer]
-log_level = 2
+log_level = 1
 warn_on_root = 0
 android.accept_sdk_license = True
