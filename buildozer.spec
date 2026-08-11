@@ -10,10 +10,10 @@ version = 0.1
 # 1. إزالة أي تحديثات أرقام إصدارات يدويًا لـ numpy و opencv
 # 1. التعديل الأول: سطر المتطلبات (استخدام النسخة المخصصة لـ Android)
 #requirements = python3,kivy==2.3.0,numpy,opencv,plyer,android
-requirements = python3,kivy==2.3.0,plyer,android,https://github.com/hyves/opencv-python-android/releases/download/v4.5.3/opencv_python-4.5.3-py3-none-any.whl
+#requirements = python3,kivy==2.3.0,plyer,android,https://github.com/hyves/opencv-python-android/releases/download/v4.5.3/opencv_python-4.5.3-py3-none-any.whl
 #requirements = python3,kivy==2.3.0,plyer,android,opencv
 # 2. التعديل الثاني: تثبيت إصدار NDK و API محدد يمنع تضارب C++
-
+requirements = python3==3.10.12,kivy==2.3.0,plyer,android,https://github.com/hyves/opencv-python-android/releases/download/v4.5.3/opencv_python-4.5.3-py3-none-any.whl
 # 3. منع التجميع المعقد وإجبار p4a على تسريع الربط
 p4a.branch = master
 #requirements = python3,kivy==2.3.0,numpy,opencv-python,plyer,android
