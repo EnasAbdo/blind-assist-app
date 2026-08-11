@@ -13,7 +13,6 @@ version = 0.1
 requirements = python3,kivy==2.3.0,opencv-python,plyer,android
 # 2. تحديد المعمارية الصريحة للضغط والربط (تمنع تضارب الـ C++ libraries)
 
-
 # 3. استخدام NDK مستقر ومتوافق مع ووصفة numpy الخاصة بأندرويد
 #android.ndk = 25b
 
