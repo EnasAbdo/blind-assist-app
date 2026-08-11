@@ -31,23 +31,31 @@ jobs:
           python3-dev libltdl-dev libgl1-mesa-dev libgles2-mesa-dev zlib1g-dev \
           autoconf automake libtool cmake zip unzip pkg-config meson ninja-build
 
-    - name: Install Python Tools & Wheel Builders
+    - name: Install Python Tools
       run: |
         python -m pip install --upgrade pip setuptools wheel build
         pip install cython==0.29.36 buildozer
 
-    - name: Accept All Android SDK Licenses
+    - name: Setup Android SDK with Official Action
+      uses: android-actions/setup-android@v3
+
+    - name: Link SDK Paths & Pre-accept Licenses
       run: |
-        # 1. قبول التراخيص لـ SDK النظام الأساسي
-        yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
-        
-        # 2. إنشاء مجلد التراخيص الخاص بـ Buildozer مسبقاً ونسخ التراخيص المقبولة إليه
         BUILDOZER_SDK="$HOME/.buildozer/android/platform/android-sdk"
-        mkdir -p "$BUILDOZER_SDK/licenses"
-        cp -r $ANDROID_HOME/licenses/* "$BUILDOZER_SDK/licenses/" || true
+        mkdir -p "$BUILDOZER_SDK"
         
-        # 3. تثبيت build-tools بشكل مسبق ومباشر لتوفير أداة aidl
-        yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --sdk_root="$BUILDOZER_SDK" "build-tools;31.0.0" "platforms;android-31" || true
+        # 1. قبول كل التراخيص فوراً
+        yes | sdkmanager --licenses || true
+
+        # 2. تثبيت build-tools و platform المطلوبة
+        yes | sdkmanager "build-tools;31.0.0" "platforms;android-31" "platform-tools" || true
+
+        # 3. عمل رابط مجازي (Symlink) بين SDK النظام المكتمل ومجلد Buildozer لتجنب تنزيل SDK جديد مكسور
+        ln -sfn $ANDROID_HOME/* "$BUILDOZER_SDK/" || true
+        
+        # 4. خدعة المسار القديم: إنشاء tools/bin وربط sdkmanager فيها ليفهمها buildozer
+        mkdir -p "$BUILDOZER_SDK/tools/bin"
+        ln -sfn $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "$BUILDOZER_SDK/tools/bin/sdkmanager" || true
 
     - name: Build APK with Buildozer
       run: |
