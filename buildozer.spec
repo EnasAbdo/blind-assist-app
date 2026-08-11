@@ -5,7 +5,9 @@ package.domain = org.example
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,onnx,txt
 version = 0.1
-requirements = python3==3.10.10,kivy==2.3.0,opencv,numpy,plyer
+# شيل ==3.10.10 من python3 واترك السطر هيك:
+requirements = python3,kivy==2.3.0,opencv,numpy==1.26.4,plyer,android
+
 orientation = portrait
 fullscreen = 0
 android.permissions = CAMERA,RECORD_AUDIO
