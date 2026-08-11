@@ -13,11 +13,7 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v4
 
-    - name: Clean previous build cache
-      run: |
-        sudo rm -rf .buildozer bin/
-
-    - name: Build APK using Official Kivy Buildozer Docker Image
+    - name: Build APK with Official Buildozer Docker
       run: |
         docker run --rm \
           -e BUILDOZER_WARN_ON_ROOT=0 \
