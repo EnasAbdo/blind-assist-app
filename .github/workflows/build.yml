@@ -31,15 +31,20 @@ jobs:
           python3-dev libltdl-dev libgl1-mesa-dev libgles2-mesa-dev zlib1g-dev \
           autoconf automake libtool cmake zip unzip pkg-config meson ninja-build
 
-    - name: Install Python Tools
+    - name: Install Python Tools & Wheel Builders
       run: |
-        python -m pip install --upgrade pip setuptools wheel
-        pip install buildozer cython==0.29.36
+        python -m pip install --upgrade pip setuptools wheel build
+        pip install cython==0.29.36 buildozer
+
+    - name: Accept Android SDK Licenses
+      run: |
+        mkdir -p ~/.android
+        touch ~/.android/repositories.cfg
+        yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
     - name: Build APK with Buildozer
       run: |
-        # إعطاء أمر تلقائي للموافقة على شروط وتراخيص Buildozer أثناء البناء
-        yes | buildozer android debug
+        buildozer android debug
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
