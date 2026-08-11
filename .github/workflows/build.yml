@@ -29,38 +29,17 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y build-essential ccache git libffi-dev libssl-dev \
           python3-dev libltdl-dev libgl1-mesa-dev libgles2-mesa-dev zlib1g-dev \
-          autoconf automake libtool cmake zip unzip pkg-config meson ninja-build wget
+          autoconf automake libtool cmake zip unzip pkg-config meson ninja-build
 
     - name: Install Python Tools
       run: |
         python -m pip install --upgrade pip setuptools wheel
         pip install buildozer cython==0.29.36
 
-    - name: Setup Android SDK Tools for Buildozer
-      run: |
-        BUILDOZER_SDK="$HOME/.buildozer/android/platform/android-sdk"
-        mkdir -p "$BUILDOZER_SDK"
-        
-        # 1. تنزيل الأدوات وتفريغها بمسار مؤقت
-        wget -q https://dl.google.com/android/repository/commandlinetools-linux-9441835_latest.zip -O /tmp/cmdline-tools.zip
-        unzip -q /tmp/cmdline-tools.zip -d /tmp/sdk_extracted
-        
-        # 2. إنشاء الهيكلية القياسية (tools + cmdline-tools/latest)
-        mkdir -p "$BUILDOZER_SDK/cmdline-tools/latest"
-        mkdir -p "$BUILDOZER_SDK/tools"
-        
-        cp -r /tmp/sdk_extracted/cmdline-tools/* "$BUILDOZER_SDK/cmdline-tools/latest/"
-        cp -r /tmp/sdk_extracted/cmdline-tools/* "$BUILDOZER_SDK/tools/"
-        
-        # تنظيف الملفات المؤقتة
-        rm -rf /tmp/cmdline-tools.zip /tmp/sdk_extracted
-
-        # 3. قبول كافة التراخيص
-        yes | "$BUILDOZER_SDK/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$BUILDOZER_SDK" --licenses || true
-
     - name: Build APK with Buildozer
       run: |
-        buildozer android debug
+        # إعطاء أمر تلقائي للموافقة على شروط وتراخيص Buildozer أثناء البناء
+        yes | buildozer android debug
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
