@@ -13,13 +13,17 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v4
 
-    - name: Build APK using Official Kivy Buildozer Docker Image
+    - name: Fix permissions for Docker
+      run: |
+        sudo chown -R 1000:1000 .
+
+    - name: Build APK using Docker (Non-Root User)
       run: |
         docker run --rm \
-          -e BUILDOZER_WARN_ON_ROOT=0 \
+          --user 1000:1000 \
           -v ${{ github.workspace }}:/home/user/hostpython \
           kivy/buildozer \
-          buildozer --warn_on_root=0 android debug
+          buildozer android debug
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
