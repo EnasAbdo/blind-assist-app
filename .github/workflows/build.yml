@@ -36,11 +36,22 @@ jobs:
         python -m pip install --upgrade pip setuptools wheel
         pip install buildozer cython==0.29.36
 
-    - name: Accept Android SDK Licenses
+    - name: Setup Android SDK Licenses & Force Build Tools
       run: |
+        # 1. قبول التراخيص العامة في السيرفر
         mkdir -p ~/.android
         touch ~/.android/repositories.cfg
         yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+
+        # 2. إنشاء مجلد التراخيص الخاص بـ Buildozer مسبقاً لمنع خطأ الترخيص
+        BUILDOZER_SDK_DIR="$HOME/.buildozer/android/platform/android-sdk"
+        mkdir -p "$BUILDOZER_SDK_DIR/licenses"
+        
+        # نسخ التراخيص المقبولة إلى مجلد buildozer مباشرة
+        cp -r $ANDROID_HOME/licenses/* "$BUILDOZER_SDK_DIR/licenses/" || true
+        
+        # 3. تثبيت build-tools 31.0.0 المستقرة وتجهيزها داخل Buildozer SDK
+        yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --sdk_root=$BUILDOZER_SDK_DIR "build-tools;31.0.0" "platforms;android-31" || true
 
     - name: Build APK with Buildozer
       run: |
