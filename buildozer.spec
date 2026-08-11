@@ -6,7 +6,7 @@ source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,onnx,txt
 version = 0.1
 # شيل ==3.10.10 من python3 واترك السطر هيك:
-requirements = python3,kivy==2.3.0,opencv,numpy==1.26.4,plyer,android
+requirements = python3,kivy==2.3.0,opencv,numpy,plyer,android
 
 orientation = portrait
 fullscreen = 0
