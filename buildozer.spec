@@ -9,13 +9,13 @@ requirements = python3==3.10.10,kivy==2.3.0,opencv,numpy,plyer
 orientation = portrait
 fullscreen = 0
 android.permissions = CAMERA,RECORD_AUDIO
-android.api = 33
+# تعديل السطور التالية داخل buildozer.spec:
+android.api = 31
 android.minapi = 24
-android.ndk = 27b
+android.ndk = 25b
 android.ndk_api = 24
-android.archs = arm64-v8a
 
 [buildozer]
-log_level = 1
+log_level = 2
 warn_on_root = 0
 android.accept_sdk_license = True
