@@ -13,16 +13,16 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v4
 
-    - name: Fix Directory Permissions Completely
+    - name: Clean previous build cache
       run: |
-        sudo chmod -R 777 .
-        sudo chown -R $USER:$USER .
+        sudo rm -rf .buildozer bin/
 
     - name: Build APK using Official Kivy Buildozer Docker Image
       run: |
         docker run --rm \
-          --user 1000:1000 \
+          -e BUILDOZER_WARN_ON_ROOT=0 \
           -v ${{ github.workspace }}:/home/user/hostpython \
+          -w /home/user/hostpython \
           kivy/buildozer \
           buildozer android debug
 
