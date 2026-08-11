@@ -13,14 +13,14 @@ version = 0.1
 #requirements = python3,kivy==2.3.0,plyer,android,https://github.com/hyves/opencv-python-android/releases/download/v4.5.3/opencv_python-4.5.3-py3-none-any.whl
 #requirements = python3,kivy==2.3.0,plyer,android,opencv
 # 2. التعديل الثاني: تثبيت إصدار NDK و API محدد يمنع تضارب C++
-requirements = python3==3.10.12,kivy==2.3.0,plyer,android,https://github.com/hyves/opencv-python-android/releases/download/v4.5.3/opencv_python-4.5.3-py3-none-any.whl
+#requirements = python3==3.10.12,kivy==2.3.0,plyer,android,https://github.com/hyves/opencv-python-android/releases/download/v4.5.3/opencv_python-4.5.3-py3-none-any.whl
 # 3. منع التجميع المعقد وإجبار p4a على تسريع الربط
 p4a.branch = master
 #requirements = python3,kivy==2.3.0,numpy,opencv-python,plyer,android
 # 1. التعديل الأول: سطر المتطلبات (Requirements)
 #requirements = python3,kivy==2.3.0,opencv-python,plyer,android
 # 2. تحديد المعمارية الصريحة للضغط والربط (تمنع تضارب الـ C++ libraries)
-
+requirements = python3,kivy==2.3.0,plyer,android,https://github.com/hyves/opencv-python-android/releases/download/v4.5.3/opencv_python-4.5.3-py3-none-any.whl
 # 3. استخدام NDK مستقر ومتوافق مع ووصفة numpy الخاصة بأندرويد
 #android.ndk = 25b
 
