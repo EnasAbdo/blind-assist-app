@@ -1,19 +1,20 @@
 [app]
-title = مساعد المكفوفين
+title = blindassist
 package.name = blindassist
 package.domain = org.example
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,onnx,txt
 version = 0.1
-# شيل ==3.10.10 من python3 واترك السطر هيك:
+
 requirements = python3,kivy==2.3.0,opencv,numpy,plyer,android
 
 orientation = portrait
 fullscreen = 0
 android.permissions = CAMERA,RECORD_AUDIO
-# تعديل السطور التالية داخل buildozer.spec:
+
 android.api = 31
 android.minapi = 24
+android.sdk_build_tools_version = 31.0.0
 android.ndk = 25b
 android.ndk_api = 24
 android.archs = arm64-v8a
