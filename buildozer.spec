@@ -8,8 +8,9 @@ version = 0.1
 #requirements = python3,kivy==2.3.0,numpy==1.26.4,opencv,plyer,android
 #requirements = python3,kivy==2.3.0,opencv,numpy,plyer,android
 # 1. إزالة أي تحديثات أرقام إصدارات يدويًا لـ numpy و opencv
-requirements = python3,kivy==2.3.0,numpy,opencv-python,plyer,android
-
+#requirements = python3,kivy==2.3.0,numpy,opencv-python,plyer,android
+# 1. التعديل الأول: سطر المتطلبات (Requirements)
+requirements = python3,kivy==2.3.0,opencv-python,plyer,android
 # 2. تحديد المعمارية الصريحة للضغط والربط (تمنع تضارب الـ C++ libraries)
 
 
