@@ -13,11 +13,12 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v4
 
-    - name: Fix permissions for Docker
+    - name: Fix Directory Permissions Completely
       run: |
-        sudo chown -R 1000:1000 .
+        sudo chmod -R 777 .
+        sudo chown -R $USER:$USER .
 
-    - name: Build APK using Docker (Non-Root User)
+    - name: Build APK using Official Kivy Buildozer Docker Image
       run: |
         docker run --rm \
           --user 1000:1000 \
