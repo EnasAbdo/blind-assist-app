@@ -24,18 +24,20 @@ jobs:
       with:
         python-version: '3.10'
 
-    - name: Install System Dependencies
+    - name: Install System Dependencies & AIDL
       run: |
         sudo apt-get update
         sudo apt-get install -y build-essential ccache git libffi-dev libssl-dev \
           python3-dev libltdl-dev libgl1-mesa-dev libgles2-mesa-dev zlib1g-dev \
-          autoconf automake libtool cmake zip unzip pkg-config meson ninja-build
+          autoconf automake libtool cmake zip unzip pkg-config meson ninja-build \
+          android-sdk-build-tools
 
-    - name: Accept Android SDK Licenses
+    - name: Accept Android SDK Licenses & Install Build Tools
       run: |
         mkdir -p ~/.android
         touch ~/.android/repositories.cfg
         yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+        yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "build-tools;30.0.3" "platforms;android-31" || true
 
     - name: Install Python Tools
       run: |
