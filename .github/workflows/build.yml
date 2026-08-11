@@ -36,22 +36,15 @@ jobs:
         python -m pip install --upgrade pip setuptools wheel
         pip install buildozer cython==0.29.36
 
-    - name: Pre-accept Android Licenses & Auto-Install Build Tools
+    - name: Accept Android SDK Licenses
       run: |
-        # إنشاء مسارات التراخيص الخاصة بـ Android SDK مسبقاً
         mkdir -p ~/.android
         touch ~/.android/repositories.cfg
-        
-        # قبول كل التراخيص في البيئة العامة
         yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
-        
-        # تجنيب Buildozer استخدام build-tools 37 والتثبيت المباشر لـ 31.0.0
-        yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "build-tools;31.0.0" "platforms;android-31" || true
 
     - name: Build APK with Buildozer
       run: |
-        # إجبار buildozer على قبول التراخيص تلقائياً من الأوامر
-        yes | buildozer android debug
+        buildozer android debug
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
